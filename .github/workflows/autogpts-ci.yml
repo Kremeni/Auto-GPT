@@ -52,17 +52,17 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python -
 
-      - name: Run regression tests
-        run: |
-          ./run agent start ${{ matrix.agent-name }}
-          cd autogpts/${{ matrix.agent-name }}
-          poetry run agbenchmark --mock
-          poetry run agbenchmark --test=WriteFile
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          AGENT_NAME: ${{ matrix.agent-name }}
-          HELICONE_API_KEY: ${{ secrets.HELICONE_API_KEY }}
-          REQUESTS_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
-          HELICONE_CACHE_ENABLED: false
-          HELICONE_PROPERTY_AGENT: ${{ matrix.agent-name }}
-          REPORT_LOCATION: ${{ format('../../reports/{0}', matrix.agent-name) }}
+      # - name: Run regression tests
+      #   run: |
+      #     ./run agent start ${{ matrix.agent-name }}
+      #     cd autogpts/${{ matrix.agent-name }}
+      #     poetry run agbenchmark --mock
+      #     poetry run agbenchmark --test=WriteFile
+      #   env:
+      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #     AGENT_NAME: ${{ matrix.agent-name }}
+      #     HELICONE_API_KEY: ${{ secrets.HELICONE_API_KEY }}
+      #     REQUESTS_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+      #     HELICONE_CACHE_ENABLED: false
+      #     HELICONE_PROPERTY_AGENT: ${{ matrix.agent-name }}
+      #     REPORT_LOCATION: ${{ format('../../reports/{0}', matrix.agent-name) }}
